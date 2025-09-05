@@ -78,7 +78,7 @@ export default function InquiryForm() {
 
     return (
         <div className="container d-flex justify-content-center align-items-center min-vh-100 bg-light">
-            <div className="card shadow-lg border-0 rounded-4 p-4 w-100" style={{ maxWidth: "700px" }}>
+            <div className="card shadow-lg border-0 rounded-4 p-4 w-100" style={{ maxWidth: "1300px" }}>
                 <h2 className="text-center text-primary mb-4">✨ Inquire Now</h2>
 
                 <form onSubmit={handleSubmit} className="row g-3">
