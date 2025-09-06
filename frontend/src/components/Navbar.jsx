@@ -1,14 +1,21 @@
 import React, { useState } from 'react';
 import { Link as ScrollLink } from 'react-scroll';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
+import { Link as RouterLink, useLocation, useNavigate } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import Logo from "../assets/Logo.png";
 
-const Navbar = () => {
+const Navbar = ({ token,setToken }) => {
   const [isMobile, setIsMobile] = useState(false);
   const location = useLocation(); // detect current route
 
   const isHomePage = location.pathname === "/";
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setToken(null);
+    navigate("/"); // back to home after logout
+  };
 
   return (
     <nav className="bg-gray-800 p-5">
@@ -24,9 +31,8 @@ const Navbar = () => {
       </div>
 
       <div
-        className={`flex flex-col sm:flex-row sm:space-x-6 items-center sm:items-center sm:justify-end ${
-          isMobile ? 'block' : 'hidden sm:flex'
-        }`}
+        className={`flex flex-col sm:flex-row sm:space-x-6 items-center sm:items-center sm:justify-end ${isMobile ? 'block' : 'hidden sm:flex'
+          }`}
       >
         {/* Home Link */}
         {isHomePage ? (
@@ -76,9 +82,23 @@ const Navbar = () => {
         <RouterLink to="/inquiry" className="text-white hover:text-gray-400 py-2 text-lg">
           Inquiry
         </RouterLink>
-        <RouterLink to="/login" className="text-white hover:text-gray-400 py-2 text-lg">
-          login
-        </RouterLink>
+        {token ? (
+          <>
+          <RouterLink to="/admin/inquiry" className="text-white hover:text-gray-400 py-2 text-lg">
+            dashboard
+          </RouterLink>
+          <button
+            onClick={handleLogout}
+            className="text-white hover:text-red-400 py-2 text-lg"
+          >
+            Logout
+          </button>
+          </>
+        ) : (
+          <RouterLink to="/login" className="text-white hover:text-gray-400 py-2 text-lg">
+            login
+          </RouterLink>
+        )}
       </div>
     </nav>
   );

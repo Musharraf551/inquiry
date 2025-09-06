@@ -19,7 +19,7 @@ function App() {
 
   return (
     <Router>
-      <Navbar />
+      <Navbar token={token} setToken={setToken} />
       <Routes>
         {/* Home page */}
         <Route
