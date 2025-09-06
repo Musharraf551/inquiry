@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function AdminInquiriesPage() {
+export default function ListInquiry() {
   const [inquiries, setInquiries] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
@@ -81,6 +81,7 @@ export default function AdminInquiriesPage() {
           ))}
         </tbody>
       </table>
+      <br />
     </div>
   );
 }

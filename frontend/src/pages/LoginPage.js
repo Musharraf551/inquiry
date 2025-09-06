@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function LoginPage({ setToken }) {
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ export default function LoginPage({ setToken }) {
       .then((data) => {
         localStorage.setItem("token", data.access); // ✅ Save token
         setToken(data.access);
-        navigate("/admin/inquiries")
+        navigate("/admin/inquiry")
       })
       .catch((err) => alert(err));
   };
@@ -40,6 +41,7 @@ export default function LoginPage({ setToken }) {
         </div>
         <button type="submit" className="btn btn-primary w-100">Login</button>
       </form>
+      <br />
     </div>
   );
 }
